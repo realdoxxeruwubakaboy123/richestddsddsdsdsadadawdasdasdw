@@ -46,18 +46,33 @@
       transition: opacity 0.8s ease;
       padding: 20px;
       text-align: center;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: white;
+      font-family: 'Orbitron', sans-serif;
+      user-select: none;
+    }
+
+    
+    #intro h1::after {
+      content: '|';
+      display: inline;
+      animation: blink 1s steps(2, start) infinite;
+      color: white;
+      font-weight: 700;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      50.01%, 100% { opacity: 0; }
     }
 
     #intro h1 {
-      font-size: 3rem;
+      margin: 0;
+      font-size: 2.5rem;
       color: #fff;
-      text-shadow: 0 0 40px #fff, 0 0 80px #ffd700;
-      animation: glowIntro 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes glowIntro {
-      0% { opacity: 0.6; text-shadow: 0 0 20px #ffd700, 0 0 40px #fff; }
-      100% { opacity: 1; text-shadow: 0 0 50px #fff, 0 0 100px #ffd700; }
+      text-shadow: 0 0 20px #fff;
+      user-select: none;
     }
 
     .container {
@@ -81,18 +96,16 @@
       pointer-events: auto;
     }
 
-    
     .card {
       position: relative;
       width: 280px;
       padding: 25px;
       border-radius: 25px;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
       text-align: center;
-      box-shadow: 0 0 25px rgba(255,255,255,0.4);
+      box-shadow: 0 0 30px #fff, 0 0 60px #fff;
       transition: transform 0.5s ease, box-shadow 0.5s ease;
       margin: 20px;
       will-change: transform, box-shadow;
@@ -100,13 +113,21 @@
 
     .card:hover {
       transform: scale(1.25);
-      box-shadow: 0 0 60px rgba(255,255,255,0.7), 0 0 100px rgba(255,255,255,0.5);
+      box-shadow: 
+        0 0 80px #fff,
+        0 0 120px #fff;
       z-index: 50;
     }
 
-    .card:hover .pfp { transform: scale(1.25); }
-    .card:hover .name { transform: scale(1.25); }
-    .card:hover .tag { transform: scale(1.5) rotate(10deg); }
+    .card:hover .pfp {
+      transform: scale(1.25);
+    }
+    .card:hover .name {
+      transform: scale(1.25);
+    }
+    .card:hover .tag {
+      transform: scale(1.5) rotate(10deg);
+    }
 
     .name-container {
       position: relative;
@@ -129,16 +150,15 @@
     }
 
     @keyframes glowText {
-      0% { text-shadow: 0 0 30px #fff, 0 0 60px #aaa; }
-      100% { text-shadow: 0 0 60px #ccc, 0 0 120px #fff; }
+      0% { text-shadow: 0 0 30px #fff, 0 0 60px #fff; }
+      100% { text-shadow: 0 0 60px #fff, 0 0 120px #fff; }
     }
 
-    
     .particle {
       position: absolute;
       width: 5px;
       height: 5px;
-      background: #fff;
+      background: white;
       border-radius: 50%;
       opacity: 0.9;
       pointer-events: none;
@@ -158,7 +178,7 @@
       border: 4px solid #fff;
       object-fit: cover;
       margin-bottom: 15px;
-      box-shadow: 0 0 40px rgba(255,255,255,0.6);
+      box-shadow: 0 0 40px #fff, 0 0 70px #fff;
       transition: transform 0.5s ease;
       will-change: transform;
     }
@@ -167,7 +187,13 @@
       font-style: italic;
       font-size: 1em;
       margin-bottom: 20px;
-      color: #ccc;
+      color: #fff;
+      animation: fadeIn 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0.5; }
+      100% { opacity: 1; }
     }
 
     .tag {
@@ -178,7 +204,7 @@
       background: rgba(255,255,255,0.15);
       padding: 10px;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
-      box-shadow: 0 0 30px #fff, 0 0 50px #ccc;
+      box-shadow: 0 0 30px #fff, 0 0 50px #fff;
       animation: pulseBtn 2s infinite;
       will-change: transform, box-shadow;
     }
@@ -193,6 +219,20 @@
       0% { transform: scale(1); }
       50% { transform: scale(1.15); }
       100% { transform: scale(1); }
+    }
+
+    .dollar {
+      position: absolute;
+      font-size: 24px;
+      color: #fff;
+      user-select: none;
+      animation: fall 5s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
     }
 
     @media (max-width: 768px) {
@@ -212,6 +252,7 @@
 
       .card:hover {
         transform: none;
+        box-shadow: 0 0 40px #fff, 0 0 60px #fff;
       }
 
       #intro h1 {
@@ -220,7 +261,9 @@
         padding: 0 10px;
       }
 
-      .name { font-size: 1.4em; }
+      .name {
+        font-size: 1.4em;
+      }
 
       .pfp {
         width: 100px;
@@ -243,7 +286,7 @@
 <div id="intro" tabindex="0"><h1>only rich people can open...</h1></div>
 
 <div class="container" id="main">
- 
+  
   <div class="card">
     <div class="name-container"><div class="name">flyryr</div></div>
     <img class="pfp" src="https://files.catbox.moe/a1rhg6.jpg" alt="flyryr"/>
@@ -294,7 +337,6 @@
   const music = document.getElementById("bg-music");
   let unlocked = false;
 
-  /* ✅ Partikel wieder aktiviert */
   function createParticles(container, count = 20) {
     const nameElement = container.querySelector('.name');
     const rect = nameElement.getBoundingClientRect();
@@ -345,11 +387,21 @@
     if (e.key === "Enter" || e.key === " ") start();
   });
 
-  document.addEventListener("click", () => {
-    if (unlocked && music.paused) music.play().catch(() => {});
-  });
+  
+  const introText = "only rich people can open...";
+  let i = 0;
+  intro.querySelector("h1").textContent = "";
+  const speed = 60; 
+
+  function typeWriter() {
+    if (i < introText.length) {
+      intro.querySelector("h1").textContent += introText.charAt(i);
+      i++;
+      setTimeout(typeWriter, speed);
+    }
+  }
+  typeWriter();
 </script>
 
 </body>
 </html>
-
